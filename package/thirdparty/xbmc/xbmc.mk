@@ -4,9 +4,9 @@
 #
 #################################################################################
 
-XBMC_VERSION = 0f782a8a86eef5b075fc85172b8a95eb61b72225
-XBMC_SITE_METHOD = git
-XBMC_SITE = git://github.com/Pivosgroup/xbmc.git
+XBMC_VERSION = e826aafab1e888939c649f1831f297bc150e978f
+XBMC_SITE_METHOD = http
+XBMC_SITE = http://github.com/toys4me/xbmc/tarball/build/03032013
 XBMC_INSTALL_STAGING = YES
 XBMC_INSTALL_TARGET = YES
 
