@@ -4,7 +4,7 @@
 #
 #################################################################################
 
-XBMC_VERSION = e826aafab1e888939c649f1831f297bc150e978f
+XBMC_VERSION = d0334f4ad992e106f3b54638d48184e2ba90a49e
 XBMC_SITE_METHOD = http
 XBMC_SITE = http://github.com/toys4me/xbmc/tarball/build/03032013
 XBMC_INSTALL_STAGING = YES
