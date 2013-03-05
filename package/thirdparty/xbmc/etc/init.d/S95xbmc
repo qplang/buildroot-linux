@@ -5,6 +5,14 @@
 
 case "$1" in
   start)
+	# setup logging
+        if [ -f /root/.xbmc/temp/xbmcstart.log ]; then
+		mv /root/.xbmc/temp/xbmcstart.log /root/.xbmc/temp/xbmcstart.old.log
+	fi
+
+	exec 1>/root/.xbmc/temp/xbmcstart.log
+	exec 2>&1
+
         echo "Starting XBMC..."
         export LD_LIBRARY_PATH=/usr/lib/mysql:$LD_LIBRARY_PATH
         export XBMC_HOME=/usr/share/xbmc
@@ -21,10 +29,31 @@ case "$1" in
                    exit $exit_value
                    ;;
               64)  echo "XBMC exit with shutdown" >&2
+		   lzopcat /usr/share/splash/stopping.fb.lzo > /dev/fb0
+                   echo 0 > /sys/class/graphics/fb0/blank
+                   sync
+                   /etc/init.d/S21hwclock stop
+                   mount -o remount,ro /tmp/userdata
+                   mount -o remount,ro /tmp/userdata.internal 2>/dev/null
+                   for dir in /media/*/
+                   do
+                        mount -o remount,ro ${dir%*/} 2>/dev/null
+                   done
+                   lzopcat /usr/share/splash/complete.fb.lzo > /dev/fb0
                    poweroff
                    exit $exit_value
                    ;;
               66)  echo "XBMC exit with reboot" >&2
+		   lzopcat /usr/share/splash/stopping.fb.lzo > /dev/fb0
+                   echo 0 > /sys/class/graphics/fb0/blank
+                   sync
+                   /etc/init.d/S21hwclock stop
+                   mount -o remount,ro /tmp/userdata
+                   mount -o remount,ro /tmp/userdata.internal 2>/dev/null
+                   for dir in /media/*/
+                   do
+                        mount -o remount,ro ${dir%*/} 2>/dev/null
+                   done
                    reboot
                    exit $exit_value
                    ;;

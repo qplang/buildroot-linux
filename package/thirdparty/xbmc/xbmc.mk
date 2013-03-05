@@ -4,9 +4,9 @@
 #
 #################################################################################
 
-XBMC_VERSION = 423cf1481030e2e9c9b2681340404d2ebb028fc0
-XBMC_SITE_METHOD = git
-XBMC_SITE = git://github.com/Pivosgroup/xbmc.git
+XBMC_VERSION = 079f50d2c3d039d3e44230f782d73b7064eda93a
+XBMC_SITE_METHOD = http
+XBMC_SITE = http://github.com/toys4me/xbmc/tarball/build/03152013
 XBMC_INSTALL_STAGING = YES
 XBMC_INSTALL_TARGET = YES
 
@@ -22,7 +22,7 @@ XBMC_DEPENDENCIES += libogg flac libmad libmpeg2 libogg \
   freetype jasper jpeg libmodplug libpng libungif tiff libcurl \
   libmicrohttpd libssh2 boost fribidi ncurses pcre libnfs afpfs-ng \
   libplist libshairport libbluray libcec \
-  readline expat libxml2 yajl samba30 libass opengl libusb-compat \
+  readline expat libxml2 yajl samba36 libass opengl libusb-compat \
   avahi udev tinyxml taglib18 libssh
 
 ifeq ($(BR2_PACKAGE_LIBAMPLAYERM1),y)

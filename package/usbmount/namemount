@@ -1,0 +1,38 @@
+#!/bin/sh
+func_usage ()
+      {
+        echo "Mount point Naming utility"
+        echo "Usage: namemount CURRENTMOUNTPOINT MOUNTPOINTNAME"
+	echo " example:"
+	echo " To name /media/usb0 and have it mount as /media/MyDrive"
+	echo " namemount usb0 MyDrive"
+      }
+
+      if test $# = 1; then
+        case "$1" in
+          --help | --hel | --he | --h | -? | --?)
+            func_usage; exit 0 ;;
+        esac
+      elif test $# = 0; then
+	 func_usage; 
+	exit 0;
+      fi
+     src_mountpoint_valid= grep -qs " /media/$1 " /proc/mounts
+     dst_mountpoint_used= grep -qs " /media/$2 " /proc/mounts
+     if [ src_mounpoint_valid ]; then
+       # make mountpoint dir
+       if [ ! -d /media/$2 ]; then
+	  mkdir /media/$2
+       fi
+       # set mountpoint config file
+       echo $2 > /media/$1/.mountpoint
+       # if not currently in right place
+       if [ $1 != $2 ]; then
+        # if something not already mounted there   
+        if [ ! dst_mountpoint_used ]; then
+                # move mountpoint to correct location
+		mount --move /media/$1 /media/$2
+        fi
+       fi
+     fi
+
