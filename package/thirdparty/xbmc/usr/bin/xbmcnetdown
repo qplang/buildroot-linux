@@ -1,0 +1,4 @@
+#!/bin/sh
+if [ -d $HOME/.xbmc/script/xbmcnetdown ]; then
+$HOME/.xbmc/script/xmbcnetdown
+fi

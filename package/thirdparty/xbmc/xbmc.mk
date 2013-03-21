@@ -4,9 +4,9 @@
 #
 #################################################################################
 
-XBMC_VERSION = 703a61ab4fa245ac6128ff532295810bee88d396
-XBMC_SITE_METHOD = git
-XBMC_SITE = git://github.com/Pivosgroup/xbmc.git
+XBMC_VERSION = b3d12a08af515497f7d10dab464ddde71f4c970a
+XBMC_SITE_METHOD = http
+XBMC_SITE = http://github.com/toys4me/xbmc/tarball/build/03212013
 XBMC_INSTALL_STAGING = YES
 XBMC_INSTALL_TARGET = YES
 
@@ -22,7 +22,7 @@ XBMC_DEPENDENCIES += libogg flac libmad libmpeg2 libogg \
   freetype jasper jpeg libmodplug libpng libungif tiff libcurl \
   libmicrohttpd libssh2 boost fribidi ncurses pcre libnfs afpfs-ng \
   libplist libshairport libbluray libcec \
-  readline expat libxml2 yajl samba30 libass opengl libusb-compat \
+  readline expat libxml2 yajl samba36 libass opengl libusb-compat \
   avahi udev tinyxml taglib18 libssh
 
 ifeq ($(BR2_PACKAGE_LIBAMPLAYERM1),y)
@@ -55,6 +55,10 @@ define XBMC_INSTALL_ETC
 
 endef
 
+define XBMC_INSTALL_USR
+   cp -rf package/thirdparty/xbmc/usr $(TARGET_DIR)
+endef
+
 define XBMC_INSTALL_SPLASH
   cp -f package/thirdparty/xbmc/xios_splash.png $(TARGET_DIR)/usr/share/xbmc/media/Splash.png
 endef
@@ -78,6 +82,7 @@ endef
 
 XBMC_PRE_CONFIGURE_HOOKS += XBMC_BOOTSTRAP
 XBMC_POST_INSTALL_TARGET_HOOKS += XBMC_INSTALL_ETC
+XBMC_POST_INSTALL_TARGET_HOOKS += XBMC_INSTALL_USR
 XBMC_POST_INSTALL_TARGET_HOOKS += XBMC_INSTALL_SPLASH
 XBMC_POST_INSTALL_TARGET_HOOKS += XBMC_CLEAN_UNUSED_ADDONS
 XBMC_POST_INSTALL_TARGET_HOOKS += XBMC_CLEAN_CONFLUENCE_SKIN

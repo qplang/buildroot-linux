@@ -1,0 +1,6 @@
+#!/bin/sh
+/etc/init.d/S49ntp restart
+if [ -f $HOME/.xbmc/scripts/xbmcnetup ]; then
+$HOME/.xbmc/scripts/xbmcnetup
+fi
+

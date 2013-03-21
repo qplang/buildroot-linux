@@ -20,7 +20,7 @@ define USBMOUNT_INSTALL_TARGET_CMDS
 	@if [ ! -f $(TARGET_DIR)/etc/usbmount/usbmount.conf ]; then \
 	        $(INSTALL) -m 0644 -D $(@D)/usbmount.conf $(TARGET_DIR)/etc/usbmount/usbmount.conf; \
 	fi
-
+        $(INSTALL) -m 0755 package/usbmount/namemount $(TARGET_DIR)/usr/bin/namemount
 	mkdir -p $(addprefix $(TARGET_DIR)/media/usb,0 1 2 3 4 5 6 7)
 endef
 
